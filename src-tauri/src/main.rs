@@ -1,0 +1,56 @@
+// Prevents additional console window on Windows in release, DO NOT REMOVE!!
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
+use tauri::{Manager, AppHandle, Window};
+
+// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+#[tauri::command]
+fn greet(name: &str) -> String {
+    format!("{}", name)
+}
+#[tauri::command]
+fn button1_clicked() -> String {
+    format!("start")
+}
+#[tauri::command]
+fn exit(app: AppHandle) {
+    print!("exit callled");
+  app.exit(0);
+}
+#[tauri::command]
+fn startmove(window: Window){
+    // start dragging the window when the button is clicked
+    window.start_dragging().unwrap();
+    // format!("start")
+  }
+//   #[tauri::command]
+// fn stopmove(window: Window){
+//     // start dragging the window when the button is clicked
+//     window.stop_dragging().unwrap();
+//     // format!("start")
+//   }
+
+fn main() {
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler!
+            [
+            greet,
+            button1_clicked,
+            button2_clicked,
+            startmove,
+            exit
+            ]
+        )
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+}
+
+// #[tauri::command]
+// fn button1_clicked() {
+//   eprintln!("Button 1 clicked!");
+// }
+
+#[tauri::command]
+fn button2_clicked() {
+  eprintln!("Button 2 clicked!");
+}
