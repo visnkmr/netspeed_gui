@@ -43,16 +43,7 @@ window.addEventListener('mousedown', (e) => startstopmovewindow(e));
 window.addEventListener('mouseup', (e) => startstopmovewindow(e));
 
 window.addEventListener("DOMContentLoaded", () => {
-  const source = new EventSource("http://127.0.0.1:6798/stream");
-
-// listen for messages
-  source.onmessage = function(event) {
-    // parse the JSON data
-    const data = JSON.parse(event.data);
-
-    // display the data in HTML
-    document.getElementById("showspeed").innerHTML = data.message;
-  };
+  
   // greetInputEl = document.querySelector("#greet-input");
   greetMsgEl = document.querySelector("#greet-msg");
   // document
@@ -76,4 +67,46 @@ window.addEventListener("DOMContentLoaded", () => {
     // .addEventListener("mousedown", () => appWindow.startDragging());
     .addEventListener("mousedown", () => exit());
 });
+let last_upload, last_download, upload_speed, down_speed
 
+ssestart()
+
+function ssestart(){
+  const source = new EventSource("http://127.0.0.1:6798/stream");
+
+// listen for messages
+  source.onmessage = function(event) {
+    console.log(event)
+    // parse the JSON data
+    const data = JSON.parse(event.data);
+    let upload=data[0]
+    let download=data[1]
+    let todaytotal=data[2]
+
+    if (last_upload > 0){
+       if( upload < last_upload)
+                upload_speed = 0
+            else
+                upload_speed = upload - last_upload
+    }
+           
+
+        if (last_download > 0){
+           if (download < last_download)
+                down_speed = 0
+            else
+                down_speed = download - last_download
+        }
+           
+
+        last_upload = upload
+        last_download = download
+    // display the data in HTML
+    // document.getElementById("showspeed").innerHTML = size(down_speed,false)+"ps↓ "+ size(upload_speed,false)+"ps↑ "+ size(todaytotal,true);
+    document.getElementById("showspeed").innerHTML =down_speed+"ps↓ "+ upload_speed+"ps↑ "+ todaytotal;
+  };
+}
+
+function size(speed,isbytes){
+  speed
+}
