@@ -40,8 +40,17 @@ fn startmove(window: Window){
 //     window.stop_dragging().unwrap();
 //     // format!("start")
 //   }
+const appname: &str = "ns_gui_sse";
 
 fn main() {
+
+  human_panic::setup_panic!(human_panic::Metadata {
+    version: env!("CARGO_PKG_VERSION").into(),
+    name: env!("CARGO_PKG_NAME").into(),
+    authors: env!("CARGO_PKG_AUTHORS").replace(":", ", ").into(),
+    homepage: env!("CARGO_PKG_HOMEPAGE").into(),
+    path_to_save_log_to: prefstore::prefstore_directory(&appname.to_string()).unwrap(),
+});
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler!
             [
