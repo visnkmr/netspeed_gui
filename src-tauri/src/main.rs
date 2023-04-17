@@ -21,6 +21,17 @@ fn exit(app: AppHandle) {
 fn startmove(window: Window){
     // start dragging the window when the button is clicked
     window.start_dragging().unwrap();
+    // get a handle to the current window
+// let window = Window::current();
+
+// get the current window size in pixels
+// let size = window.inner_size().unwrap();
+// println!("{:?}", size);
+
+// // get the current window size in logical units
+// let factor = window.scale_factor().unwrap();
+// // let logical = size.to_logical(factor);
+// println!("{:?}", factor);
     // format!("start")
   }
 //   #[tauri::command]
@@ -43,6 +54,8 @@ fn main() {
         )
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+
+      
 }
 
 // #[tauri::command]
