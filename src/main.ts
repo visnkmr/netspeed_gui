@@ -1,21 +1,21 @@
 const { invoke } = window.__TAURI__.tauri;
 // import { appWindow } from '@tauri-apps/api/tauri'
 
-let greetInputEl;
-let greetMsgEl: Element;
+// let greetInputEl;
+// let greetMsgEl: Element;
 
-async function greet(whatever:String) {
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsgEl.textContent = await invoke("greet", { name: whatever });
-}
-async function button1_clicked() {
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsgEl.textContent = await invoke("button1_clicked");
-}
-async function button2_clicked() {
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  await invoke("button2_clicked");
-}
+// async function greet(whatever:String) {
+//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+//   greetMsgEl.textContent = await invoke("greet", { name: whatever });
+// }
+// async function button1_clicked() {
+//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+//   greetMsgEl.textContent = await invoke("button1_clicked");
+// }
+// async function button2_clicked() {
+//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+//   await invoke("button2_clicked");
+// }
 async function exit() {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
   await invoke("exit");
@@ -24,10 +24,10 @@ async function movewindow() {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
   await invoke("startmove");
 }
-async function stopmovewindow() {
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  await invoke("startmove");
-}
+// async function stopmovewindow() {
+//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+//   await invoke("startmove");
+// }
 function startstopmovewindow(e: MouseEvent){
   // {
     // tauri.invoke('drag_window');
@@ -45,20 +45,20 @@ window.addEventListener('mouseup', (e) => startstopmovewindow(e));
 window.addEventListener("DOMContentLoaded", () => {
   
   // greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg") as HTMLParagraphElement;
+  // greetMsgEl = document.querySelector("#greet-msg") as HTMLParagraphElement;
   // document
   //   .querySelector("#greet-button")
   //   .addEventListener("click", () => greet(greetInputEl.value));
   
-  document
-    .querySelector("#other")
-    ?.addEventListener("mousedown", () => movewindow());
-  document
-    .querySelector("#other")
-    ?.addEventListener("mouseup", () => stopmovewindow());
-    document
-    .querySelector("#start")
-    ?.addEventListener("click", () => button2_clicked());
+  // document
+  //   .querySelector("#other")
+  //   ?.addEventListener("mousedown", () => movewindow());
+  // document
+  //   .querySelector("#other")
+  //   ?.addEventListener("mouseup", () => stopmovewindow());
+  //   document
+  //   .querySelector("#start")
+  //   ?.addEventListener("click", () => button2_clicked());
     // .addEventListener("click", () => greet("start"));
     document
     .querySelector("#stop")

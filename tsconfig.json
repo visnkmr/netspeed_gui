@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "removeComments": true,
     // Allow JavaScript files to be compiled
     // "allowJs": false,
     // // Report errors in .js files
